@@ -4,7 +4,7 @@ now=$(date '+%Y%m%d%H%M')
 
 (
 
-end=$(date '+%s')
+start=$(date '+%s')
 
 source /etc/rht
 
@@ -44,15 +44,20 @@ do
 		let cerr=cerr+1
 		laberr="$laberr $lab"
 	fi
+	
+	sleep 5
+
 	if lab $lab finish
 	then
-		echo "*** $lab start PASS"
+		echo "*** $lab finish PASS"
 		let cpass=cpass+1
 	else
-		echo "*** $lab start ERROR"
+		echo "*** $lab finish ERROR"
 		let cerr=cerr+1
 		laberr="$laberr $lab"
 	fi
+	
+	sleep 5
 done
 
 end=$(date '+%s')
@@ -63,7 +68,7 @@ echo "*** Testing took $(date --utc --date=@$interval +%H:%M.%S) hr:min.seg"
 echo "***"
 echo "*** Total lab scripts: $ctotal, $cpass pass, $cerr errors"
 echo "***"
-echo "*** Lab scripts with errors on either start or finish:"
+echo "*** List of lab scripts with errors on either start or finish:"
 echo -n "*** " ; echo $laberr | uniq
 
 ) 2>&1 3>&1 | tee lab-test-all-$now.log  | grep "\*\*\*"

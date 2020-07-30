@@ -1,9 +1,11 @@
 # Quick and Dirty Lab Script Testing
 
-This will not be needed anymore when we all switch to DynoLabs but in the meantime it might be useful to projects performing quick releases (couse bugs, shlib changes).
+This will not be needed anymore when we all switch to DynoLabs but in the meantime it might be useful to projects performing quick releases (course bugs, shlib fixes, TLS certificate renewals, minor version bumps).
 
 It is my no means extensive, nor complete, much less bullet proof.
 It is just a script that lists all lab scripts available from classroom and runs each of them with `start` and `finish` arguments. 
+
+Its output has to be iterpreted by a course developer to determine which of the reported errors are real.
 
 ## Usage
 
@@ -15,18 +17,18 @@ It displays, for each lab script it finds:
 *** Testing lab script: lab-workers-degrade
 ***
 *** workers-degrade start PASS
-*** workers-degrade start PASS
+*** workers-degrade finish PASS
 ```
 
 And at the end it displays an overall summary:
 
 ```
-*** Testing took 19:53.17 hr:min.seg
+*** Testing took 00:16.15 hr:min.seg
 ***
-*** Total lab scripts: 33, 62 pass, 4 errors
+*** Total lab scripts: 33, 61 pass, 5 errors
 ***
-*** Lab scripts with errors on either start or finish:
-*** certificates-app-trust logging-deploy storage-review template-ansible
+*** List of lab scripts with errors on either start or finish:
+*** certificates-app-trust logging-deploy monitor-troubleshoot storage-review template-ansible
 ```
 
 It also generates a log file `lab-test-all-yymmddhhmm.log` with the fill output of each lab command.
